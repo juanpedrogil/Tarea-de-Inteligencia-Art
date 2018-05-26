@@ -89,34 +89,4 @@ public class ArbolSintactico {
 //                     +   *
 //                    / \ / \
 //                   1   47   6
-    public String dibujarArbolIzq(String cad){
-        if(cad.charAt(0)=='1'||cad.charAt(0)=='2'
-                || cad.charAt(0)=='3' || cad.charAt(0)=='4'
-                || cad.charAt(0)=='5' ||cad.charAt(0)=='6'
-                || cad.charAt(0)=='7' || cad.charAt(0)=='8'
-                || cad.charAt(0)=='9' || cad.charAt(0)=='0'){
-            return "/\n"+cad.charAt(0);
-        }else{
-            if(cad.charAt(1)=='+' || cad.charAt(1)=='-' || cad.charAt(1)=='*' || cad.charAt(1)=='/'){
-                return "/\n"+cad.charAt(0)+"  "+dibujarArbolIzq(cad.substring(1,cad.length()));
-            }else{
-                return "/\n"+cad.charAt(0)+"  "+dibujarArbolIzq(cad.substring(1,cad.length()))+"       "+dibujarArbolDer(cad.substring(1,cad.length()));
-            }
-        }
-    }
-    public String dibujarArbolDer(String cad){
-        if(cad.charAt(0)=='1'||cad.charAt(0)=='2'
-                || cad.charAt(0)=='3' || cad.charAt(0)=='4'
-                || cad.charAt(0)=='5' ||cad.charAt(0)=='6'
-                || cad.charAt(0)=='7' || cad.charAt(0)=='8'
-                || cad.charAt(0)=='9' || cad.charAt(0)=='0'){
-            return "\\"+"\n"+cad.charAt(0);
-        }else{
-            if(cad.charAt(1)=='+' || cad.charAt(1)=='-' || cad.charAt(1)=='*' || cad.charAt(1)=='/'){
-                return "/\n"+cad.charAt(0)+"  "+dibujarArbolIzq(cad.substring(1,cad.length()));
-            }else{
-                return "/\n"+cad.charAt(0)+"  "+dibujarArbolIzq(cad.substring(1,cad.length()))+"       "+dibujarArbolDer(cad.substring(1,cad.length()));
-            }
-        }
-    }
 }
