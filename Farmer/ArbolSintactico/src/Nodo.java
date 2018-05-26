@@ -76,8 +76,8 @@ public class Nodo {
             }else{
                 if(cadena.charAt(i)=='*'||cadena.charAt(i)=='/'){
                     this.setValor(cadena.charAt(i)+"");
-                    i=cadena.length();
                     indicePartir=i;
+                    i=cadena.length();
                 }
             }
         }

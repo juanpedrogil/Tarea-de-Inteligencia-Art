@@ -77,11 +77,11 @@ public class ArbolSintactico {
             dibujarArbol(nodo.getHijoIzq(),esp.substring(0,esp.length()));
         }
         if(nodo.getHijoIzq()!=null){
-            dibujarArbol(nodo.getHijoDer(),esp+"   ");
+            dibujarArbol(nodo.getHijoDer(),esp+"    ");
         }
     }
     public static void main(String[] args){
-        new ArbolSintactico("1+4+5=2+3");
+        new ArbolSintactico("1*4+3=2+3");
     }
     
 //                       =
