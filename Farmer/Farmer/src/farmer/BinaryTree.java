@@ -18,50 +18,43 @@ public class BinaryTree{
         end.add(null);
         end.add(null);
         end.add(null);
-        root=new Node(null,null,null,new Value(start,end));
-        System.out.print(end.size());
+        root=new Node(null,null,null,"Col,Granjero,Lobo,Oveja,|,,,, ");
+        generate();
     }
     public void generate(){
-        pickGO();
-        root.setChildLeft(new Node(root,null,null,new Value(start,end)));
-        getG();
+        root.setChildLeft(new Node(root,null,null,"Col,,Lobo,,|,,Granjero,,Oveja"));
+        root.getChildLeft().setChildLeft(new Node(root.getChildLeft(),null,null,"Col,Granjero,Lobo,,|,,,,Oveja"));
+        root.getChildLeft().getChildLeft().setChildLeft(new Node(root.getChildLeft().getChildLeft(),null,null,"Col,,,,|,,Granjero,Lobo,Oveja"));
+        root.getChildLeft().getChildLeft().setChildRight(new Node(root.getChildLeft().getChildLeft(),null,null,",,Lobo,,|,Col,Granjero,,Oveja"));
+        root.getChildLeft().getChildLeft().getChildLeft().setChildLeft(new Node(root.getChildLeft().getChildLeft().getChildLeft(),null,null,"Col,Granjero,,Oveja,|,,,Lobo, "));
+        root.getChildLeft().getChildLeft().getChildLeft().getChildLeft().setChildLeft(new Node(root.getChildLeft().getChildLeft().getChildLeft().getChildLeft(),null,null,",,,Oveja,|,Col,Granjero,Lobo, "));
+        root.getChildLeft().getChildLeft().getChildLeft().getChildLeft().getChildLeft().setChildLeft(new Node(root.getChildLeft().getChildLeft().getChildLeft().getChildLeft().getChildLeft(),null,null,",Granjero,,Oveja,|,Col,,Lobo, "));
+        root.getChildLeft().getChildLeft().getChildLeft().getChildLeft().getChildLeft().getChildLeft().setChildLeft(new Node(root.getChildLeft().getChildLeft().getChildLeft().getChildLeft().getChildLeft().getChildLeft(),null,null,",,,,|,Col,Granjero,Lobo,Oveja"));
+        
         
     }
-    private void pickGO(){
-        pickG();
-        end.set(3, "Oveja");
-        start.set(3, null);
+    public String search(String res){
+        String[] resArray=res.split(",");
+        String[] rootArray=root.getValue().split(",");
+        if(resArray[5].equals(rootArray[5]) 
+                && resArray[6].equals(rootArray[6])
+                && resArray[7].equals(rootArray[7])
+                && resArray[8].equals(rootArray[8])){
+            return "(|"+resArray[5]+","+resArray[6]+","+resArray[7]+","+resArray[8]+")";
+        }
+        String aux="("+root.getValue()+")";
+        return aux+search(res,root.getChildLeft());
     }
-    private void pickGC(){
-        pickG();
-        end.set(0, "Col");
-        start.set(0, null);
-    }
-    private void pickGL(){
-        pickG();
-        end.set(2, "Lobo");
-        start.set(2, null);
-    }
-    private void pickG(){
-        end.set(1, "Granjero");
-        start.set(1, null);
-    }
-    private void getGO(){
-        getG();
-        end.set(3, null);
-    }
-    private void getGC(){
-        getG();
-        end.set(0, null);
-        start.set(0, "Col");
-    }
-    private void getGL(){
-        getG();
-        end.set(2,null);
-        start.set(2, "Lobo");
-    }
-    private void getG(){
-        end.set(1,null);
-        start.set(1,"Granjero");
+    public String search(String res,Node node){
+        String[] resArray=res.split(",");
+        String[] nodeArray=node.getValue().split(",");
+        if(resArray[5].equals(nodeArray[5]) 
+                && resArray[6].equals(nodeArray[6])
+                && resArray[7].equals(nodeArray[7])
+                && resArray[8].equals(nodeArray[8])){
+            return "(|"+resArray[5]+","+resArray[6]+","+resArray[7]+","+resArray[8]+")";
+        }
+        String aux="("+node.getValue()+")";
+        return aux+search(res,node.getChildLeft());
     }
 }

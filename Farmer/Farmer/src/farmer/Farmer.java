@@ -5,6 +5,9 @@
  */
 package farmer;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author juanpedrog
@@ -16,7 +19,9 @@ public class Farmer {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        new BinaryTree();
+        BinaryTree arbol=new BinaryTree();
+        String cadena=arbol.search(",,,,|,Col,Granjero,Lobo,Oveja");
+        System.out.print(cadena);
     }
     
 }
