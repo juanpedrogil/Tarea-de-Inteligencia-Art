@@ -49,14 +49,46 @@ public class ArbolSintactico {
         //Recorrer la lista en busca de paréntesis
         root.generarValor();
     }
+    public String espacios="                                ";
+    String cad="";
     private void mostrarArbol(){
         //System.out.print(root.mostrarArbol());
-        System.out.print(dibujarArbolIzq(root.mostrarArbol()));
-        
+        //System.out.print(root.mostrarArbol());
+        cad=espacios+"=";
+        dibujarArbol(root,espacios);
+        System.out.print(cad);
+    }
+    public void dibujarArbol(Nodo nodo,String esp){
+        if(nodo.getHijoIzq()!=null){
+            esp=esp.substring(0,esp.length()-1);
+            cad+="\n"+esp+"/";
+        }
+        if(nodo.getHijoDer()!=null){
+            cad+=" \\";
+        }
+        if(nodo.getHijoIzq()!=null){
+            esp=esp.substring(0,esp.length()-1);
+            cad+="\n"+esp+nodo.getHijoIzq().getValor();
+        }
+        if(nodo.getHijoDer()!=null){
+            cad+="   "+nodo.getHijoDer().getValor();
+        }
+        if(nodo.getHijoIzq()!=null){
+            dibujarArbol(nodo.getHijoIzq(),esp.substring(0,esp.length()));
+        }
+        if(nodo.getHijoIzq()!=null){
+            dibujarArbol(nodo.getHijoDer(),esp+"   ");
+        }
     }
     public static void main(String[] args){
-        new ArbolSintactico("1+4=2+3");
+        new ArbolSintactico("1+4+5=2+3");
     }
+    
+//                       =
+//                      / \
+//                     +   *
+//                    / \ / \
+//                   1   47   6
     public String dibujarArbolIzq(String cad){
         if(cad.charAt(0)=='1'||cad.charAt(0)=='2'
                 || cad.charAt(0)=='3' || cad.charAt(0)=='4'
